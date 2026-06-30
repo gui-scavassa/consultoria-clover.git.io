@@ -81,7 +81,7 @@ function initProgress() {
   window.addEventListener('scroll', update, { passive: true });
 }
 
-/* ---------- 5. Hero intro timeline ---------- */
+/* ---------- 4. Hero intro timeline ---------- */
 function initHero() {
   const hero = document.querySelector('.hero');
   if (!hero) return;
@@ -100,7 +100,7 @@ function initHero() {
   gsap.to('.hero-orb.b', { yPercent: -18, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
 }
 
-/* ---------- 6. Scroll reveals ---------- */
+/* ---------- 5. Scroll reveals ---------- */
 function initReveals() {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const items = gsap.utils.toArray('[data-reveal]');
@@ -129,7 +129,128 @@ function initReveals() {
   });
 }
 
-/* ---------- 7. Count-up stats ---------- */
+/* ---------- 5b. Hero mock scroll (scale + tilt) ---------- */
+function initHeroScroll() {
+  const mock = document.querySelector('.hero-mock');
+  if (!mock) return;
+  gsap.fromTo(mock,
+    { y: 60, scale: .94, rotateX: 9, transformPerspective: 1400, transformOrigin: 'center top' },
+    { y: 0, scale: 1, rotateX: 0, ease: 'none',
+      scrollTrigger: { trigger: mock, start: 'top 92%', end: 'top 30%', scrub: true } }
+  );
+}
+
+/* ---------- 5c. Parallax drift ---------- */
+function initParallax() {
+  gsap.utils.toArray('[data-parallax]').forEach((el) => {
+    const amount = parseFloat(el.dataset.parallax) || 0.12;
+    gsap.fromTo(el, { yPercent: amount * 100 }, {
+      yPercent: -amount * 100, ease: 'none',
+      scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true },
+    });
+  });
+}
+
+/* ---------- 5d. Image reveal (scale + fade) ---------- */
+function initImageReveal() {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  gsap.utils.toArray('[data-img-reveal]').forEach((el) => {
+    if (reduce) { el.style.opacity = 1; return; }
+    const inner = el.querySelector('.shot-inner') || el;
+    gsap.set(el, { opacity: 0, y: 44 });
+    gsap.set(inner, { scale: 1.16 });
+    ScrollTrigger.create({
+      trigger: el, start: 'top 85%', once: true,
+      onEnter: () => {
+        gsap.to(el, { opacity: 1, y: 0, duration: 1, ease: 'power3.out' });
+        gsap.to(inner, { scale: 1, duration: 1.3, ease: 'power3.out' });
+      },
+    });
+  });
+}
+
+/* ---------- Image deck (auto-cycle every 2s + fan on hover) ----------
+   Pure CSS/JS — no GSAP dependency, runs even if animations are off.   */
+function initDeck() {
+  const deck = document.querySelector('[data-deck]');
+  if (!deck) return;
+  const stage = deck.querySelector('.deck-stage');
+  const cards = Array.from(stage.querySelectorAll('.deck-card'));
+  const n = cards.length;
+  if (!n) return;
+
+  let order = cards.map((_, i) => i);    // stacked order; order[0] = top
+  let fanned = false;
+  let front = Math.floor((n - 1) / 2);   // which card is at the front while fanned
+  let timer = null;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const depthTransform = (d) => {
+    const rot = d === 0 ? 0 : (d % 2 ? d * 2.2 : -d * 2.2);
+    return `translateY(${d * 9}px) translateX(${d * 4}px) scale(${1 - d * 0.05}) rotate(${rot}deg)`;
+  };
+
+  // Stacked state — looks like a deck of cards
+  const stack = () => {
+    order.forEach((idx, depth) => {
+      const c = cards[idx];
+      c.style.transform = depthTransform(depth);
+      c.style.zIndex = String(n - depth);
+      c.style.opacity = '1';
+    });
+  };
+
+  // Fanned carousel — LINEAR (com início e fim, não circular): the `front`
+  // card is centered & raised; the others keep their natural left→right
+  // sequence and fan out by their real distance from it. So selecting the
+  // left-most card brings it to the centre and pushes the rest to the right.
+  const fan = () => {
+    cards.forEach((c, i) => {
+      const off = i - front;                 // <0 = à esquerda, 0 = centro, >0 = à direita
+      const a = Math.abs(off);
+      const sc = off === 0 ? 0.96 : 0.82;
+      c.style.transform =
+        `translateX(${off * 12}%) translateY(${a * 7}px) rotate(${off * 9}deg) scale(${sc})`;
+      c.style.zIndex = String(30 - a);
+      c.style.opacity = '1';
+    });
+  };
+
+  // Shuffle: send the top card down into the deck, promote the next one
+  const cycle = () => {
+    if (fanned) return;
+    const top = cards[order[0]];
+    top.style.transform = depthTransform(n - 1);
+    top.style.opacity = '0';
+    top.style.zIndex = '0';
+    setTimeout(() => {
+      order.push(order.shift());
+      stack();
+      top.style.opacity = '1';
+    }, 430);
+  };
+
+  const start = () => { if (!timer && !reduce) timer = setInterval(cycle, 2000); };
+  const stop = () => { if (timer) { clearInterval(timer); timer = null; } };
+
+  const openFan = () => { fanned = true; stop(); front = Math.floor((n - 1) / 2); fan(); };
+  const closeFan = () => { fanned = false; stack(); start(); };
+
+  stage.addEventListener('mouseenter', openFan);
+  stage.addEventListener('mouseleave', closeFan);
+
+  // Hover / click a card while fanned -> bring it to the front (carousel slide)
+  cards.forEach((c, i) => {
+    const bringToFront = () => { if (fanned && front !== i) { front = i; fan(); } };
+    c.addEventListener('mouseenter', bringToFront);
+    c.addEventListener('click', bringToFront);
+  });
+
+  stack();
+  start();
+}
+
+/* ---------- 6. Count-up stats ---------- */
 function initCounters() {
   gsap.utils.toArray('[data-count]').forEach((el) => {
     const target = parseFloat(el.dataset.count);
@@ -146,7 +267,7 @@ function initCounters() {
   });
 }
 
-/* ---------- 8. FAQ accordion ---------- */
+/* ---------- 7. FAQ accordion ---------- */
 function initFAQ() {
   document.querySelectorAll('.faq-item').forEach((item) => {
     const q = item.querySelector('.faq-q');
@@ -162,7 +283,7 @@ function initFAQ() {
   });
 }
 
-/* ---------- 9. Magnetic buttons ---------- */
+/* ---------- 8. Magnetic buttons ---------- */
 function initMagnetic() {
   if (window.matchMedia('(pointer: coarse)').matches) return;
   document.querySelectorAll('[data-magnetic]').forEach((el) => {
@@ -176,7 +297,7 @@ function initMagnetic() {
   });
 }
 
-/* ---------- 10. Contact form (demo) ---------- */
+/* ---------- 9. Contact form (demo) ---------- */
 function initForm() {
   const form = document.querySelector('.form');
   if (!form) return;
@@ -196,12 +317,16 @@ window.addEventListener('DOMContentLoaded', () => {
   initProgress();
   initFAQ();
   initForm();
+  initDeck();
 
   // Animation layer — only if GSAP/ScrollTrigger loaded
   if (ANIM) {
     initSmoothScroll();
     initHero();
+    initHeroScroll();
     initReveals();
+    initParallax();
+    initImageReveal();
     initCounters();
     initMagnetic();
     // refresh after fonts load to fix trigger positions

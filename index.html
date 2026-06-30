@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍀</text></svg>" />
+  <link rel="stylesheet" href="css/clover.css?v=11" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><path d='M20 20C20 14 15 9 9 11C3 13 4 21 11 21C5 21 4 29 9 29C15 31 20 26 20 20Z' fill='%231A4731'/><path d='M20 20C20 14 25 9 31 11C37 13 36 21 29 21C35 21 36 29 31 29C25 31 20 26 20 20Z' fill='%233FA66B'/><rect x='18.5' y='20' width='3' height='16' rx='1.5' fill='%23123423'/></svg>" />
 </head>
 <body>
   <div class="scroll-progress"></div>
@@ -18,12 +18,8 @@
   <!-- ================= NAV ================= -->
   <nav class="nav">
     <a href="index.html" class="brand">
-      <svg class="logo-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20 20C20 14 15 9 9 11C3 13 4 21 11 21C5 21 4 29 9 29C15 31 20 26 20 20Z" fill="#5bff9e"/>
-        <path d="M20 20C20 14 25 9 31 11C37 13 36 21 29 21C35 21 36 29 31 29C25 31 20 26 20 20Z" fill="#2ee6a0"/>
-        <rect x="18.5" y="20" width="3" height="16" rx="1.5" fill="#0fae73"/>
-      </svg>
-      Clover<span style="color:var(--green)">.</span>
+      <img class="logo-mark" src="img/clover.svg" alt="" width="60" height="60" />
+      Clover
     </a>
     <div class="nav-links">
       <a href="index.html" class="active">Início</a>
@@ -41,7 +37,6 @@
     <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
 
-  <!-- Mobile menu -->
   <div class="mobile-menu">
     <a href="index.html">Início</a>
     <a href="servicos.html">Serviços</a>
@@ -52,22 +47,17 @@
 
   <!-- ================= HERO ================= -->
   <header class="hero">
-    <div class="hero-bg">
-      <div class="hero-grid"></div>
-      <div class="hero-orb a"></div>
-      <div class="hero-orb b"></div>
-    </div>
-    <div class="container hero-content">
-      <span class="eyebrow" data-hero>Consultoria & Soluções em Tech</span>
+    <div class="hero-orb a"></div>
+    <div class="hero-orb b"></div>
+    <div class="container">
+      <span class="eyebrow" data-hero><span class="dot"></span> Consultoria & Soluções em Tech</span>
       <h1 class="display">
-        <span class="line-mask"><span data-hero>Tecnologia que</span></span>
-        <span class="line-mask"><span data-hero>dá <span class="text-grad">sorte</span> ao</span></span>
-        <span class="line-mask"><span data-hero>seu negócio.</span></span>
+        <span class="line-mask"><span data-hero>Tecnologia que dá</span></span>
+        <span class="line-mask"><span data-hero><span class="text-accent">sorte</span> ao seu negócio.</span></span>
       </h1>
       <p class="lead" data-hero>
-        A Clover Corporation transforma desafios complexos em soluções digitais sob medida —
-        do código à estratégia. Engenharia, consultoria e inteligência de dados para empresas
-        que querem crescer mais rápido.
+        Transformamos desafios complexos em soluções digitais sob medida — do código à estratégia.
+        Engenharia, consultoria e inteligência de dados para empresas que querem crescer mais rápido.
       </p>
       <div class="hero-actions">
         <a href="contato.html" class="btn btn-primary" data-magnetic>
@@ -76,99 +66,255 @@
         </a>
         <a href="servicos.html" class="btn btn-ghost">Ver serviços</a>
       </div>
-      <div class="hero-meta">
-        <div class="stat"><strong>+120</strong><span>Projetos entregues</span></div>
-        <div class="stat"><strong>98%</strong><span>Retenção de clientes</span></div>
-        <div class="stat"><strong>+40</strong><span>Especialistas</span></div>
+      <div class="hero-meta" data-hero>
+        <span class="avatars"><span>GS</span><span>RF</span><span>+</span></span>
+        <span class="stat">Mais de <strong style="color:var(--jungle)">120 projetos</strong> entregues</span>
+      </div>
+
+      <!-- Faux product window -->
+      <div class="hero-mock">
+        <div class="mock-bar">
+          <div class="dots"><i></i><i></i><i></i></div>
+          <span class="url">clover.tech/dashboard</span>
+        </div>
+        <div class="mock-body">
+          <aside class="mock-side">
+            <div class="s-logo">
+              <img src="img/clover.svg" alt="" width="22" height="22" />
+              Clover
+            </div>
+            <nav class="mock-nav">
+              <span class="on">Visão geral</span>
+              <span>Projetos</span>
+              <span>Dados & IA</span>
+              <span>Equipe</span>
+              <span>Relatórios</span>
+            </nav>
+          </aside>
+          <div class="mock-main">
+            <div class="mock-cards">
+              <div class="mock-stat"><b>+120</b><small>Projetos</small></div>
+              <div class="mock-stat"><b>98%</b><small>Retenção</small></div>
+              <div class="mock-stat"><b>+40</b><small>Especialistas</small></div>
+            </div>
+            <div class="mock-chart">
+              <div class="bar" style="height:45%"></div>
+              <div class="bar mid" style="height:62%"></div>
+              <div class="bar" style="height:54%"></div>
+              <div class="bar hi" style="height:88%"></div>
+              <div class="bar mid" style="height:70%"></div>
+              <div class="bar" style="height:80%"></div>
+              <div class="bar hi" style="height:96%"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- ================= MARQUEE ================= -->
-  <div class="marquee">
-    <div class="marquee-track">
-      <span class="marquee-item">Desenvolvimento de Software</span>
-      <span class="marquee-item">Consultoria Estratégica</span>
-      <span class="marquee-item">Dados & Inteligência Artificial</span>
-      <span class="marquee-item">Transformação Digital</span>
-      <span class="marquee-item">Desenvolvimento de Software</span>
-      <span class="marquee-item">Consultoria Estratégica</span>
-      <span class="marquee-item">Dados & Inteligência Artificial</span>
-      <span class="marquee-item">Transformação Digital</span>
+  <!-- ================= TRUST / MARQUEE ================= -->
+  <section class="trust section" style="padding-block:40px 20px;">
+    <div class="container">
+      <p>O que entregamos</p>
     </div>
-  </div>
+    <div class="marquee">
+      <div class="marquee-track">
+        <span class="marquee-item">Desenvolvimento de Software</span>
+        <span class="marquee-item">Consultoria Estratégica</span>
+        <span class="marquee-item">Dados & Inteligência Artificial</span>
+        <span class="marquee-item">Transformação Digital</span>
+        <span class="marquee-item">Desenvolvimento de Software</span>
+        <span class="marquee-item">Consultoria Estratégica</span>
+        <span class="marquee-item">Dados & Inteligência Artificial</span>
+        <span class="marquee-item">Transformação Digital</span>
+      </div>
+    </div>
+  </section>
 
   <!-- ================= SERVICES ================= -->
   <section class="section" id="servicos">
     <div class="container">
-      <div class="section-head">
-        <span class="eyebrow" data-reveal>O que fazemos</span>
-        <h2 class="h-section" data-reveal>Soluções completas, do conceito à<br /><span class="text-grad">operação em produção.</span></h2>
+      <div class="section-head center">
+        <span class="eyebrow" data-reveal><span class="dot"></span> O que fazemos</span>
+        <h2 class="h-section" data-reveal>Soluções completas, do conceito<br />à <span class="text-accent">operação em produção.</span></h2>
         <p class="lead" data-reveal>Times multidisciplinares que combinam engenharia, estratégia e dados para resolver o problema certo — não apenas escrever código.</p>
       </div>
-
-      <div class="services-grid" data-reveal-group>
-        <article class="service-card">
+      <div class="cards-grid" data-reveal-group>
+        <article class="card">
           <span class="num">01</span>
-          <div class="icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
-          </div>
           <h3>Desenvolvimento de Software</h3>
-          <p>Aplicações web, mobile e sistemas sob medida, construídos com arquitetura escalável e foco em qualidade desde o primeiro commit.</p>
+          <p>Aplicações web, mobile e sistemas sob medida, com arquitetura escalável e foco em qualidade desde o primeiro commit.</p>
           <div class="tags"><span>Web Apps</span><span>APIs</span><span>Mobile</span><span>Cloud</span></div>
         </article>
-
-        <article class="service-card">
+        <article class="card">
           <span class="num">02</span>
-          <div class="icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="4"/></svg>
-          </div>
           <h3>Consultoria & Estratégia Tech</h3>
-          <p>Roadmaps tecnológicos, arquitetura de soluções e transformação digital que conectam decisões de tecnologia aos objetivos de negócio.</p>
+          <p>Roadmaps tecnológicos, arquitetura de soluções e transformação digital que conectam tecnologia aos objetivos de negócio.</p>
           <div class="tags"><span>Roadmap</span><span>Arquitetura</span><span>Discovery</span></div>
         </article>
-
-        <article class="service-card">
+        <article class="card">
           <span class="num">03</span>
-          <div class="icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg>
-          </div>
           <h3>Dados & Inteligência Artificial</h3>
-          <p>De dashboards de BI a modelos de machine learning e integração de IA generativa — transformamos dados brutos em vantagem competitiva.</p>
+          <p>De dashboards de BI a modelos de ML e IA generativa — transformamos dados brutos em vantagem competitiva.</p>
           <div class="tags"><span>BI</span><span>ML</span><span>IA Generativa</span><span>Automação</span></div>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- ================= SPLIT FEATURE ================= -->
-  <section class="section">
+  <!-- ================= SHOWCASE (STICKY) ================= -->
+  <section class="section showcase">
     <div class="container">
-      <div class="split">
-        <div data-reveal>
-          <span class="eyebrow">Por que a Clover</span>
-          <h2 class="h-section" style="margin:22px 0 18px;">Um parceiro de engenharia, não apenas um fornecedor.</h2>
-          <p class="lead">Trabalhamos lado a lado com o seu time, com transparência total e entregas contínuas. Cada solução é pensada para durar e escalar.</p>
-          <ul class="feature-list">
-            <li>
-              <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>
-              <div><strong>Times sênior dedicados</strong><span>Especialistas que viram extensão do seu time, não recursos descartáveis.</span></div>
-            </li>
-            <li>
-              <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>
-              <div><strong>Entregas a cada sprint</strong><span>Valor de verdade nas suas mãos em ciclos curtos e previsíveis.</span></div>
-            </li>
-            <li>
-              <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>
-              <div><strong>Foco em resultado de negócio</strong><span>Medimos sucesso por impacto — receita, eficiência e crescimento.</span></div>
-            </li>
-          </ul>
+      <div class="section-head center">
+        <span class="eyebrow" data-reveal><span class="dot"></span> Clover em ação</span>
+        <h2 class="h-section" data-reveal>Da ideia ao impacto,<br />em uma <span class="text-accent">jornada só.</span></h2>
+      </div>
+      <div class="showcase-grid">
+        <!-- Image deck: top card auto-swaps every 2s; fans out on hover -->
+        <div class="showcase-media">
+          <div class="deck" data-deck>
+            <div class="deck-stage">
+              <figure class="shot deck-card">
+                <div class="shot-inner"><div class="shot-ph">
+                  <span class="ph-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg></span>
+                  <b>Produto 01</b>
+                  <span class="ph-size">imagem do produto · 1600×1200</span>
+                </div></div>
+              </figure>
+              <figure class="shot deck-card">
+                <div class="shot-inner"><div class="shot-ph">
+                  <span class="ph-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></span>
+                  <b>Produto 02</b>
+                  <span class="ph-size">imagem do produto · 1600×1200</span>
+                </div></div>
+              </figure>
+              <figure class="shot deck-card">
+                <div class="shot-inner"><div class="shot-ph">
+                  <span class="ph-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>
+                  <b>Produto 03</b>
+                  <span class="ph-size">imagem do produto · 1600×1200</span>
+                </div></div>
+              </figure>
+              <figure class="shot deck-card">
+                <div class="shot-inner"><div class="shot-ph">
+                  <span class="ph-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></span>
+                  <b>Produto 04</b>
+                  <span class="ph-size">imagem do produto · 1600×1200</span>
+                </div></div>
+              </figure>
+              <figure class="shot deck-card">
+                <div class="shot-inner"><div class="shot-ph">
+                  <span class="ph-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></span>
+                  <b>Produto 05</b>
+                  <span class="ph-size">imagem do produto · 1600×1200</span>
+                </div></div>
+              </figure>
+            </div>
+            <p class="deck-hint">Passe o mouse para abrir o leque · clique numa tela para trazê-la à frente</p>
+          </div>
         </div>
-        <div data-reveal="0.15">
-          <div class="visual-card">
-            <div class="ring"></div><div class="ring"></div><div class="ring"></div>
-            <div class="core">
-              <svg viewBox="0 0 40 40" fill="none"><path d="M20 20C20 14 15 9 9 11C3 13 4 21 11 21C5 21 4 29 9 29C15 31 20 26 20 20Z" fill="currentColor"/><path d="M20 20C20 14 25 9 31 11C37 13 36 21 29 21C35 21 36 29 31 29C25 31 20 26 20 20Z" fill="currentColor" opacity=".7"/></svg>
+        <!-- Right-side copy (independent from the deck) -->
+        <div class="showcase-steps">
+          <div class="showcase-step">
+            <span class="s-kicker">Etapa 01</span>
+            <h3>Entendemos o desafio</h3>
+            <p>Mergulhamos no seu contexto para mapear objetivos, riscos e oportunidades. Saímos com um escopo claro e métricas de sucesso definidas.</p>
+          </div>
+          <div class="showcase-step">
+            <span class="s-kicker">Etapa 02</span>
+            <h3>Desenhamos a solução</h3>
+            <p>Definimos arquitetura, stack e experiência. Decisões técnicas que equilibram velocidade de entrega e sustentabilidade a longo prazo.</p>
+          </div>
+          <div class="showcase-step">
+            <span class="s-kicker">Etapa 03</span>
+            <h3>Construímos com você</h3>
+            <p>Desenvolvimento ágil, com entregas a cada sprint e total transparência. Qualidade desde o primeiro commit.</p>
+          </div>
+          <div class="showcase-step">
+            <span class="s-kicker">Etapa 04</span>
+            <h3>Ativamos os dados</h3>
+            <p>Transformamos dados em decisão: BI, modelos de machine learning e IA generativa integrados ao seu produto.</p>
+          </div>
+          <div class="showcase-step">
+            <span class="s-kicker">Etapa 05</span>
+            <h3>Evoluímos continuamente</h3>
+            <p>Acompanhamos métricas, otimizamos e evoluímos a solução. Tecnologia é processo vivo — e seguimos com você no longo prazo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PRODUCT GALLERY ================= -->
+  <section class="section section-invert" id="produtos">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow" data-reveal><span class="dot"></span> Nossos produtos</span>
+        <h2 class="h-section" data-reveal>Soluções que já estão<br /><span class="text-accent">no mundo real.</span></h2>
+        <p class="lead" data-reveal>Uma amostra do que construímos. Substitua os espaços abaixo pelas imagens reais dos seus produtos.</p>
+      </div>
+      <div class="gallery-grid">
+        <figure class="shot" data-img-reveal data-parallax="0.05">
+          <div class="shot-inner"><div class="shot-ph" style="aspect-ratio:16/11;">
+            <span class="ph-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg></span>
+            <b>Plataforma de pagamentos</b>
+            <span class="ph-size">imagem do produto · 1600×1100</span>
+          </div></div>
+          <figcaption class="shot-cap"><b>Fintech · Desenvolvimento</b><small>Core de pagamentos escalável</small></figcaption>
+        </figure>
+        <figure class="shot" data-img-reveal data-parallax="0.1">
+          <div class="shot-inner"><div class="shot-ph" style="aspect-ratio:16/11;">
+            <span class="ph-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></span>
+            <b>Recomendação inteligente</b>
+            <span class="ph-size">imagem do produto · 1600×1100</span>
+          </div></div>
+          <figcaption class="shot-cap"><b>Varejo · Dados & IA</b><small>Personalização com machine learning</small></figcaption>
+        </figure>
+        <figure class="shot" data-img-reveal data-parallax="0.1">
+          <div class="shot-inner"><div class="shot-ph" style="aspect-ratio:16/11;">
+            <span class="ph-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></span>
+            <b>Copiloto de atendimento</b>
+            <span class="ph-size">imagem do produto · 1600×1100</span>
+          </div></div>
+          <figcaption class="shot-cap"><b>SaaS B2B · IA Generativa</b><small>Agente de IA no suporte</small></figcaption>
+        </figure>
+        <figure class="shot" data-img-reveal data-parallax="0.05">
+          <div class="shot-inner"><div class="shot-ph" style="aspect-ratio:16/11;">
+            <span class="ph-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18"/></svg></span>
+            <b>Transformação digital</b>
+            <span class="ph-size">imagem do produto · 1600×1100</span>
+          </div></div>
+          <figcaption class="shot-cap"><b>Logística · Consultoria</b><small>Modernização de sistemas legados</small></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROCESS ================= -->
+  <section class="section section-invert" style="padding-block:0;">
+    <div class="dark-wrap">
+      <div class="section-dark">
+        <div class="dark-inner">
+          <div class="section-head" style="margin-bottom:0;">
+            <span class="eyebrow" data-reveal><span class="dot"></span> Como trabalhamos</span>
+            <h2 class="h-section" data-reveal style="margin-top:22px;">Um processo claro, do primeiro olá ao deploy.</h2>
+          </div>
+          <div class="steps">
+            <div class="step" data-reveal>
+              <div class="s-num">01</div>
+              <div><h3>Discovery</h3><p>Mergulhamos no seu contexto, mapeamos objetivos, riscos e oportunidades. Saímos com escopo, prioridades e métricas de sucesso bem definidas.</p></div>
+            </div>
+            <div class="step" data-reveal>
+              <div class="s-num">02</div>
+              <div><h3>Estratégia & Arquitetura</h3><p>Desenhamos a solução técnica ideal — stack, arquitetura e roadmap — equilibrando velocidade de entrega e sustentabilidade.</p></div>
+            </div>
+            <div class="step" data-reveal>
+              <div class="s-num">03</div>
+              <div><h3>Construção</h3><p>Desenvolvimento ágil com entregas contínuas, testes automatizados e total visibilidade do progresso a cada sprint.</p></div>
+            </div>
+            <div class="step" data-reveal>
+              <div class="s-num">04</div>
+              <div><h3>Evolução</h3><p>Acompanhamos métricas, otimizamos e evoluímos a solução. Tecnologia é processo vivo — e nós seguimos com você.</p></div>
             </div>
           </div>
         </div>
@@ -176,8 +322,8 @@
     </div>
   </section>
 
-  <!-- ================= STATS BAND ================= -->
-  <section class="section stats-band">
+  <!-- ================= STATS ================= -->
+  <section class="section section-invert">
     <div class="container">
       <div class="stats-grid" data-reveal-group>
         <div class="stat-block"><div class="val"><span data-count="120" data-suffix="+">0</span></div><div class="label">Projetos entregues</div></div>
@@ -188,40 +334,12 @@
     </div>
   </section>
 
-  <!-- ================= PROCESS ================= -->
-  <section class="section">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow" data-reveal>Como trabalhamos</span>
-        <h2 class="h-section" data-reveal>Um processo claro,<br />do primeiro <span class="text-grad">olá</span> ao deploy.</h2>
-      </div>
-      <div class="steps">
-        <div class="step" data-reveal>
-          <div class="step-num">01</div>
-          <div><h3>Discovery</h3><p>Mergulhamos no seu contexto, mapeamos objetivos, riscos e oportunidades. Saímos com escopo, prioridades e métricas de sucesso bem definidas.</p></div>
-        </div>
-        <div class="step" data-reveal>
-          <div class="step-num">02</div>
-          <div><h3>Estratégia & Arquitetura</h3><p>Desenhamos a solução técnica ideal — stack, arquitetura e roadmap — equilibrando velocidade de entrega e sustentabilidade a longo prazo.</p></div>
-        </div>
-        <div class="step" data-reveal>
-          <div class="step-num">03</div>
-          <div><h3>Construção</h3><p>Desenvolvimento ágil com entregas contínuas, testes automatizados e total visibilidade do progresso a cada sprint.</p></div>
-        </div>
-        <div class="step" data-reveal>
-          <div class="step-num">04</div>
-          <div><h3>Evolução</h3><p>Acompanhamos métricas, otimizamos e evoluímos a solução. Tecnologia é processo vivo — e nós seguimos com você.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ================= CTA ================= -->
-  <section class="section cta-band">
-    <div class="container">
+  <section class="section section-invert" style="padding-top:0;">
+    <div class="cta-wrap">
       <div class="cta-box" data-reveal>
-        <span class="eyebrow" style="justify-content:center;">Vamos conversar</span>
-        <h2 style="margin-top:22px;">Pronto para dar <span class="text-grad">sorte</span><br />ao seu próximo projeto?</h2>
+        <span class="eyebrow"><span class="dot"></span> Vamos conversar</span>
+        <h2 style="margin-top:24px;">Pronto para dar <span class="text-accent">sorte</span><br />ao seu próximo projeto?</h2>
         <p class="lead">Conte seu desafio. Em até 48h retornamos com uma conversa estratégica — sem compromisso.</p>
         <div class="hero-actions">
           <a href="contato.html" class="btn btn-primary" data-magnetic>
@@ -240,8 +358,8 @@
       <div class="footer-top">
         <div class="footer-about">
           <a href="index.html" class="brand">
-            <svg class="logo-mark" viewBox="0 0 40 40" fill="none"><path d="M20 20C20 14 15 9 9 11C3 13 4 21 11 21C5 21 4 29 9 29C15 31 20 26 20 20Z" fill="#5bff9e"/><path d="M20 20C20 14 25 9 31 11C37 13 36 21 29 21C35 21 36 29 31 29C25 31 20 26 20 20Z" fill="#2ee6a0"/><rect x="18.5" y="20" width="3" height="16" rx="1.5" fill="#0fae73"/></svg>
-            Clover<span style="color:var(--green)">.</span>
+            <img class="logo-mark" src="img/clover.svg" alt="" width="60" height="60" />
+            Clover
           </a>
           <p>Consultoria e soluções em tecnologia que transformam desafios em crescimento.</p>
           <div class="socials">
@@ -250,29 +368,13 @@
             <a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.93.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 015 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z"/></svg></a>
           </div>
         </div>
-        <div class="footer-col">
-          <h4>Empresa</h4>
-          <a href="sobre.html">Sobre nós</a>
-          <a href="cases.html">Cases</a>
-          <a href="servicos.html">Serviços</a>
-          <a href="contato.html">Contato</a>
-        </div>
-        <div class="footer-col">
-          <h4>Serviços</h4>
-          <a href="servicos.html">Desenvolvimento</a>
-          <a href="servicos.html">Consultoria</a>
-          <a href="servicos.html">Dados & IA</a>
-        </div>
-        <div class="footer-col">
-          <h4>Contato</h4>
-          <a href="mailto:contato@clover.tech">contato@clover.tech</a>
-          <a href="tel:+5511999999999">+55 11 99999-9999</a>
-          <a href="#">São Paulo, Brasil</a>
-        </div>
+        <div class="footer-col"><h4>Empresa</h4><a href="sobre.html">Sobre nós</a><a href="cases.html">Cases</a><a href="servicos.html">Serviços</a><a href="contato.html">Contato</a></div>
+        <div class="footer-col"><h4>Serviços</h4><a href="servicos.html">Desenvolvimento</a><a href="servicos.html">Consultoria</a><a href="servicos.html">Dados & IA</a></div>
+        <div class="footer-col"><h4>Contato</h4><a href="mailto:contato@clover.tech">contato@clover.tech</a><a href="tel:+5511999999999">+55 11 99999-9999</a><a href="#">São Paulo, Brasil</a></div>
       </div>
       <div class="footer-bottom">
         <span>© 2026 Clover Corporation. Todos os direitos reservados.</span>
-        <span>Feito com <span style="color:var(--green)">🍀</span> em São Paulo</span>
+        <span>Feito em São Paulo, Brasil</span>
       </div>
     </div>
   </footer>
@@ -280,6 +382,6 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=6"></script>
 </body>
 </html>
