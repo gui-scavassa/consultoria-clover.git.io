@@ -92,8 +92,7 @@ function initHero() {
     duration: 1,
     stagger: 0.09,
   })
-  .from('.hero-actions > *', { y: 24, opacity: 0, duration: .7, stagger: .1 }, '-=0.4')
-  .from('.hero-meta .stat', { y: 20, opacity: 0, duration: .6, stagger: .08 }, '-=0.5');
+  .from('.hero-actions > *', { y: 24, opacity: 0, duration: .7, stagger: .1 }, '-=0.4');
 
   // parallax orbs
   gsap.to('.hero-orb.a', { yPercent: 22, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
@@ -267,23 +266,7 @@ function initCounters() {
   });
 }
 
-/* ---------- 7. FAQ accordion ---------- */
-function initFAQ() {
-  document.querySelectorAll('.faq-item').forEach((item) => {
-    const q = item.querySelector('.faq-q');
-    const a = item.querySelector('.faq-a');
-    q.addEventListener('click', () => {
-      const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach((other) => {
-        if (other !== item) { other.classList.remove('open'); other.querySelector('.faq-a').style.maxHeight = null; }
-      });
-      item.classList.toggle('open', !isOpen);
-      a.style.maxHeight = isOpen ? null : a.scrollHeight + 'px';
-    });
-  });
-}
-
-/* ---------- 8. Magnetic buttons ---------- */
+/* ---------- 7. Magnetic buttons ---------- */
 function initMagnetic() {
   if (window.matchMedia('(pointer: coarse)').matches) return;
   document.querySelectorAll('[data-magnetic]').forEach((el) => {
@@ -297,7 +280,7 @@ function initMagnetic() {
   });
 }
 
-/* ---------- 9. Contact form (demo) ---------- */
+/* ---------- 8. Contact form (demo) ---------- */
 function initForm() {
   const form = document.querySelector('.form');
   if (!form) return;
@@ -315,7 +298,6 @@ window.addEventListener('DOMContentLoaded', () => {
   // Always run — no GSAP dependency
   initNav();
   initProgress();
-  initFAQ();
   initForm();
   initDeck();
 
