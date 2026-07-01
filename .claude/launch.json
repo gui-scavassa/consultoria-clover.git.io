@@ -4,7 +4,7 @@
     {
       "name": "clover-site",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["serve.py"],
+      "runtimeArgs": ["-m", "http.server", "8123"],
       "port": 8123
     }
   ]
