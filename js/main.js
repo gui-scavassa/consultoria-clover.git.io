@@ -280,15 +280,18 @@ function initMagnetic() {
   });
 }
 
-/* ---------- 8. Contact form (demo) ---------- */
+/* ---------- 8. Contact form → Google Forms (posts to a hidden iframe) ----------
+   The form submits natively (action -> Google Forms formResponse) targeting a
+   hidden iframe, so the page never leaves. We only surface the success state
+   and clear the fields AFTER the browser has serialized/sent the values.      */
 function initForm() {
   const form = document.querySelector('.form');
   if (!form) return;
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const ok = form.querySelector('.form-success');
+  const ok = form.querySelector('.form-success');
+  form.addEventListener('submit', () => {
+    // Runs only when native (required) validation passed.
     if (ok) ok.classList.add('show');
-    form.querySelectorAll('input, textarea, select').forEach((f) => { f.value = ''; });
+    setTimeout(() => form.reset(), 400);                      // after values are sent
     setTimeout(() => ok && ok.classList.remove('show'), 6000);
   });
 }
