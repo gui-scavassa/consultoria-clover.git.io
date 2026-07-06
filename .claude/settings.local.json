@@ -3,7 +3,8 @@
     "allow": [
       "Bash(py --version)",
       "mcp__Claude_Preview__preview_start",
-      "Bash(python -c ' *)"
+      "Bash(python -c ' *)",
+      "Bash(git mv *)"
     ]
   }
 }
