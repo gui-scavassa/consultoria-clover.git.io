@@ -249,7 +249,49 @@ function initDeck() {
   start();
 }
 
-/* ---------- 6. Count-up stats ---------- */
+/* ---------- 6. Editorial Ticker — driven purely by scroll position ----------
+   Rows move only when the visitor scrolls. Odd rows go left, even go right.
+   Content loops seamlessly (modulo half-width) so it never runs out.       */
+function initTicker() {
+  const rows = document.querySelectorAll('.ticker-row');
+  if (!rows.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // px of translateX per px scrolled — different per row for parallax feel
+  const speeds = [0.28, 0.40, 0.22, 0.34];
+  const dirs   = Array.from(rows).map(r => parseInt(r.dataset.tickerDir) || -1);
+  let halves   = null; // cached half-widths (recomputed after fonts load)
+
+  const compute = () => {
+    halves = Array.from(rows).map(row => {
+      const inner = row.querySelector('.ticker-inner');
+      return inner ? inner.scrollWidth / 2 : 1;
+    });
+  };
+
+  const update = () => {
+    if (!halves) compute();
+    const raw = window.scrollY;
+    rows.forEach((row, i) => {
+      const inner = row.querySelector('.ticker-inner');
+      if (!inner) return;
+      const hw  = halves[i];
+      const dist = raw * speeds[i % speeds.length];
+      // Left rows: 0 → -hw → loop; right rows: -hw → 0 → loop (both seamless)
+      const offset = dirs[i] === -1
+        ? -(dist % hw)
+        : (dist % hw) - hw;
+      inner.style.transform = `translateX(${offset}px)`;
+    });
+  };
+
+  update();
+  window.addEventListener('scroll', update, { passive: true });
+  // Recompute after fonts settle (avoids wrong scrollWidth on first paint)
+  if (document.fonts) document.fonts.ready.then(() => { halves = null; update(); });
+}
+
+/* ---------- 7. Count-up stats ---------- */
 function initCounters() {
   gsap.utils.toArray('[data-count]').forEach((el) => {
     const target = parseFloat(el.dataset.count);
@@ -266,7 +308,7 @@ function initCounters() {
   });
 }
 
-/* ---------- 7. Magnetic buttons ---------- */
+/* ---------- 8. Magnetic buttons ---------- */
 function initMagnetic() {
   if (window.matchMedia('(pointer: coarse)').matches) return;
   document.querySelectorAll('[data-magnetic]').forEach((el) => {
@@ -280,7 +322,65 @@ function initMagnetic() {
   });
 }
 
-/* ---------- 8. Contact form → Google Forms (posts to a hidden iframe) ----------
+/* ---------- 9. Horizontal scroll gallery — maps vertical scroll → translateX ----------
+   The .hscroll-container height is set dynamically so 1px vertical = 1px horizontal.
+   Works with Lenis (dispatches native scroll events) and plain scroll.                */
+function initHorizontalScroll() {
+  const container = document.querySelector('[data-hscroll]');
+  if (!container) return;
+  const gallery = container.querySelector('.hscroll-gallery');
+  if (!gallery) return;
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    gallery.style.flexWrap = 'wrap';
+    gallery.style.padding = 'var(--gutter)';
+    return;
+  }
+
+  const getGap = () => parseFloat(getComputedStyle(gallery).gap) || 24;
+  const getDist = () => {
+    const items = Array.from(gallery.children);
+    if (!items.length) return 0;
+    return (items.length - 1) * (items[0].offsetWidth + getGap());
+  };
+
+  const setHeight = () => {
+    container.style.height = `calc(100vh + ${getDist()}px)`;
+  };
+
+  const update = () => {
+    const rect = container.getBoundingClientRect();
+    const scrollable = container.offsetHeight - window.innerHeight;
+    if (scrollable <= 0) return;
+    const progress = Math.max(0, Math.min(1, -rect.top / scrollable));
+    gallery.style.transform = `translateX(${-progress * getDist()}px)`;
+  };
+
+  setHeight();
+  update();
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', () => { setHeight(); update(); }, { passive: true });
+
+  // Cards fall in from above (simulating dropping from the deck above)
+  if (ANIM) {
+    const items = gallery.querySelectorAll('.hscroll-item');
+    gsap.from(items, {
+      y: -window.innerHeight * 0.55,
+      opacity: 0,
+      scale: 0.78,
+      stagger: 0.13,
+      duration: 1.1,
+      ease: 'power4.out',
+      scrollTrigger: {
+        trigger: container,
+        start: 'top 88%',
+        once: true,
+      },
+    });
+  }
+}
+
+/* ---------- 10. Contact form → Google Forms (posts to a hidden iframe) ----------
    The form submits natively (action -> Google Forms formResponse) targeting a
    hidden iframe, so the page never leaves. We only surface the success state
    and clear the fields AFTER the browser has serialized/sent the values.      */
@@ -303,6 +403,8 @@ window.addEventListener('DOMContentLoaded', () => {
   initProgress();
   initForm();
   initDeck();
+  initTicker();
+  initHorizontalScroll();
 
   // Animation layer — only if GSAP/ScrollTrigger loaded
   if (ANIM) {
