@@ -2,11 +2,10 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "clover-site",
+      "name": "molior",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server"],
-      "port": 8123,
-      "autoPort": true
+      "runtimeArgs": ["-m", "http.server", "8123"],
+      "port": 8123
     }
   ]
 }

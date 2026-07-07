@@ -1,5 +1,5 @@
 /* =========================================================
-   CLOVER CORPORATION — Interactions & Animations
+   MOLIOR — Interactions & Animations
    Lenis smooth scroll + GSAP + ScrollTrigger
    ========================================================= */
 
@@ -94,9 +94,6 @@ function initHero() {
   })
   .from('.hero-actions > *', { y: 24, opacity: 0, duration: .7, stagger: .1 }, '-=0.4');
 
-  // parallax orbs
-  gsap.to('.hero-orb.a', { yPercent: 22, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
-  gsap.to('.hero-orb.b', { yPercent: -18, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
 }
 
 /* ---------- 5. Scroll reveals ---------- */
@@ -139,34 +136,6 @@ function initHeroScroll() {
   );
 }
 
-/* ---------- 5c. Parallax drift ---------- */
-function initParallax() {
-  gsap.utils.toArray('[data-parallax]').forEach((el) => {
-    const amount = parseFloat(el.dataset.parallax) || 0.12;
-    gsap.fromTo(el, { yPercent: amount * 100 }, {
-      yPercent: -amount * 100, ease: 'none',
-      scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true },
-    });
-  });
-}
-
-/* ---------- 5d. Image reveal (scale + fade) ---------- */
-function initImageReveal() {
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  gsap.utils.toArray('[data-img-reveal]').forEach((el) => {
-    if (reduce) { el.style.opacity = 1; return; }
-    const inner = el.querySelector('.shot-inner') || el;
-    gsap.set(el, { opacity: 0, y: 44 });
-    gsap.set(inner, { scale: 1.16 });
-    ScrollTrigger.create({
-      trigger: el, start: 'top 85%', once: true,
-      onEnter: () => {
-        gsap.to(el, { opacity: 1, y: 0, duration: 1, ease: 'power3.out' });
-        gsap.to(inner, { scale: 1, duration: 1.3, ease: 'power3.out' });
-      },
-    });
-  });
-}
 
 /* ---------- Image deck (auto-cycle every 2s + fan on hover) ----------
    Pure CSS/JS — no GSAP dependency, runs even if animations are off.   */
@@ -345,7 +314,13 @@ function initHorizontalScroll() {
   };
 
   const setHeight = () => {
-    container.style.height = `calc(100vh + ${getDist()}px)`;
+    const dist = getDist();
+    const items = Array.from(gallery.children);
+    const nGaps = items.length - 1;
+    if (nGaps <= 0) { container.style.height = '100vh'; return; }
+    // Cap vertical scroll so each card takes max 50 % of vh — prevents locked feeling on desktop
+    const perCard = Math.min(dist / nGaps, Math.max(200, window.innerHeight * 0.5));
+    container.style.height = `calc(100vh + ${Math.round(nGaps * perCard)}px)`;
   };
 
   const update = () => {
@@ -365,12 +340,13 @@ function initHorizontalScroll() {
   if (ANIM) {
     const items = gallery.querySelectorAll('.hscroll-item');
     gsap.from(items, {
-      y: -window.innerHeight * 0.55,
+      y: 80,
       opacity: 0,
-      scale: 0.78,
+      scale: 0.92,
       stagger: 0.13,
       duration: 1.1,
       ease: 'power4.out',
+      clearProps: 'transform,translate,rotate,scale',
       scrollTrigger: {
         trigger: container,
         start: 'top 88%',
@@ -396,6 +372,109 @@ function initForm() {
   });
 }
 
+/* ---------- 11. Hero beams — diagonal light-ray animation (Molior theme) ---------- */
+function initHeroFlow() {
+  const canvas = document.getElementById('hero-flow');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  const hero = canvas.closest('.hero');
+  const dpr = window.devicePixelRatio || 1;
+  const mobile = () => window.innerWidth < 768;
+
+  let width = 0, height = 0, animId = 0, beams = [];
+
+  function mkBeam() {
+    const isPurple = Math.random() < 0.7;
+    return {
+      x:         Math.random() * width  * 1.5 - width  * 0.25,
+      y:         Math.random() * height * 1.5 - height * 0.25,
+      width:     30  + Math.random() * 60,
+      length:    height * 2.5,
+      angle:     -35 + Math.random() * 10,
+      speed:     0.6 + Math.random() * 1.2,
+      opacity:   0.38 + Math.random() * 0.32,
+      hue:       isPurple ? 240 + Math.random() * 25 : 38 + Math.random() * 14,
+      isPurple,
+      pulse:     Math.random() * Math.PI * 2,
+      pulseSpeed: 0.02 + Math.random() * 0.03,
+    };
+  }
+
+  function resetBeam(b, i) {
+    const col = i % 3, gap = width / 3;
+    const isPurple = Math.random() < 0.7;
+    b.y        = height + 100;
+    b.x        = col * gap + gap / 2 + (Math.random() - 0.5) * gap * 0.5;
+    b.width    = 100 + Math.random() * 100;
+    b.speed    = 0.5 + Math.random() * 0.4;
+    b.hue      = isPurple ? 240 + Math.random() * 25 : 38 + Math.random() * 14;
+    b.isPurple = isPurple;
+    b.opacity  = 0.45 + Math.random() * 0.25;
+  }
+
+  function drawBeam(b) {
+    ctx.save();
+    ctx.translate(b.x, b.y);
+    ctx.rotate(b.angle * Math.PI / 180);
+
+    const op  = b.opacity * (0.8 + Math.sin(b.pulse) * 0.2);
+    const sat = b.isPurple ? '85%' : '95%';
+    const lit = b.isPurple ? '55%' : '58%';
+    const h   = b.hue;
+
+    const g = ctx.createLinearGradient(0, 0, 0, b.length);
+    g.addColorStop(0,   `hsla(${h},${sat},${lit},0)`);
+    g.addColorStop(0.1, `hsla(${h},${sat},${lit},${op * 0.5})`);
+    g.addColorStop(0.4, `hsla(${h},${sat},${lit},${op})`);
+    g.addColorStop(0.6, `hsla(${h},${sat},${lit},${op})`);
+    g.addColorStop(0.9, `hsla(${h},${sat},${lit},${op * 0.5})`);
+    g.addColorStop(1,   `hsla(${h},${sat},${lit},0)`);
+
+    ctx.fillStyle = g;
+    ctx.fillRect(-b.width / 2, 0, b.width, b.length);
+    ctx.restore();
+  }
+
+  function resize() {
+    width  = hero ? hero.offsetWidth  : window.innerWidth;
+    height = hero ? hero.offsetHeight : window.innerHeight;
+    canvas.width  = Math.round(width  * dpr);
+    canvas.height = Math.round(height * dpr);
+    canvas.style.width  = width  + 'px';
+    canvas.style.height = height + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const count = mobile() ? 15 : 30;
+    beams = Array.from({ length: count }, mkBeam);
+  }
+
+  function render() {
+    ctx.clearRect(0, 0, width, height);
+    ctx.filter = mobile() ? 'blur(8px)' : 'blur(22px)';
+
+    beams.forEach((b, i) => {
+      b.y     -= b.speed;
+      b.pulse += b.pulseSpeed;
+      if (b.y + b.length < -100) resetBeam(b, i);
+      drawBeam(b);
+    });
+
+    animId = requestAnimationFrame(render);
+  }
+
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+  render();
+
+  if (typeof IntersectionObserver !== 'undefined' && hero) {
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { if (!animId) render(); }
+      else { cancelAnimationFrame(animId); animId = 0; }
+    }, { threshold: 0 }).observe(hero);
+  }
+}
+
 /* ---------- Boot ---------- */
 window.addEventListener('DOMContentLoaded', () => {
   // Always run — no GSAP dependency
@@ -404,6 +483,7 @@ window.addEventListener('DOMContentLoaded', () => {
   initForm();
   initDeck();
   initTicker();
+  initHeroFlow();
   initHorizontalScroll();
 
   // Animation layer — only if GSAP/ScrollTrigger loaded
@@ -412,8 +492,6 @@ window.addEventListener('DOMContentLoaded', () => {
     initHero();
     initHeroScroll();
     initReveals();
-    initParallax();
-    initImageReveal();
     initCounters();
     initMagnetic();
     // refresh after fonts load to fix trigger positions
