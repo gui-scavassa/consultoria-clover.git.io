@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Molior — Agentes de IA, Automações e SaaS</title>
-  <meta name="description" content="A Molior constrói agentes de IA, automações inteligentes e plataformas SaaS que operam em produção no seu negócio. IA que sai do slide e vira resultado." />
+  <title>Molior — Agentes de IA e Automações</title>
+  <meta name="description" content="A Molior constrói agentes de IA e automações inteligentes que operam em produção no seu negócio. IA que sai do slide e vira resultado." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,7 +19,7 @@
   <nav class="nav">
     <a href="index.html" class="brand">
       <img class="logo-mark" src="img/molior.svg" alt="Molior" width="48" height="48" />
-      Molior
+      <span>Molior</span>
     </a>
     <div class="nav-links">
       <a href="index.html" class="active">Início</a>
@@ -44,109 +44,35 @@
   <!-- ================= HERO ================= -->
   <header class="hero">
     <canvas id="hero-flow" aria-hidden="true"></canvas>
-    <div class="container">
-      <span class="eyebrow" data-hero><span class="dot"></span> Agentes de IA · Automações · SaaS</span>
-      <h1 class="display">
-        <span class="line-mask"><span data-hero>Agentes que <span class="text-accent">trabalham</span>.</span></span>
-        <span class="line-mask"><span data-hero>Sistemas que <span class="text-accent">escalam</span>.</span></span>
-      </h1>
-      <p class="lead" data-hero>
-        A Molior constrói agentes de IA, automações e plataformas SaaS que operam dentro do
-        seu negócio real. Sem slide. Em produção.
-      </p>
-      <div class="hero-actions">
-        <a href="contato.html" class="btn btn-primary" data-magnetic>
-          Começar um projeto
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-        <a href="#servicos" class="btn btn-ghost">Ver o que construímos</a>
+    <div class="container hero-split">
+      <div class="hero-text">
+        <h1 class="display">
+          <span class="line-mask"><span data-hero>Agentes que <span class="text-accent">trabalham</span>.</span></span>
+          <span class="line-mask"><span data-hero>Sistemas que <span class="text-accent">escalam</span>.</span></span>
+        </h1>
+        <p class="lead" data-hero>
+          A Molior constrói agentes de IA e automações que operam dentro do
+          seu negócio real. Sem slide. Em produção.
+        </p>
+        <div class="hero-actions">
+          <a href="contato.html" class="btn btn-primary" data-magnetic>
+            Começar um projeto
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#servicos" class="btn btn-ghost">Ver o que construímos</a>
+        </div>
       </div>
-      <!-- Faux product window -->
-      <div class="hero-mock">
-        <div class="mock-bar">
-          <div class="dots"><i></i><i></i><i></i></div>
-          <span class="url">molior.ai/console</span>
-        </div>
-        <div class="mock-body">
-          <aside class="mock-side">
-            <div class="s-logo">
-              <img src="img/molior.svg" alt="" width="22" height="22" />
-              Molior
-            </div>
-            <nav class="mock-nav">
-              <span class="on">Visão geral</span>
-              <span>Agentes</span>
-              <span>Automações</span>
-              <span>Integrações</span>
-              <span>Deploys</span>
-            </nav>
-          </aside>
-          <div class="mock-main">
-            <div class="mock-cards">
-              <div class="mock-stat"><b>18</b><small>Agentes ativos</small></div>
-              <div class="mock-stat"><b>99,9%</b><small>Uptime</small></div>
-              <div class="mock-stat"><b>24/7</b><small>Operação</small></div>
-            </div>
-            <div class="mock-chart">
-              <div class="bar" style="height:45%"></div>
-              <div class="bar mid" style="height:62%"></div>
-              <div class="bar" style="height:54%"></div>
-              <div class="bar hi" style="height:88%"></div>
-              <div class="bar mid" style="height:70%"></div>
-              <div class="bar" style="height:80%"></div>
-              <div class="bar hi" style="height:96%"></div>
-            </div>
-          </div>
-        </div>
+      <div class="hero-canvas-wrap" aria-hidden="true">
+        <canvas id="cube-canvas"></canvas>
       </div>
     </div>
   </header>
 
-  <!-- ================= TRUST / MARQUEE ================= -->
-  <section class="trust section" style="padding-block:40px 20px;">
-    <div class="marquee">
-      <div class="marquee-track">
-        <span class="marquee-item">Agentes de IA</span>
-        <span class="marquee-item">Automações</span>
-        <span class="marquee-item">SaaS com IA</span>
-        <span class="marquee-item">Integrações</span>
-        <span class="marquee-item">Agentes de IA</span>
-        <span class="marquee-item">Automações</span>
-        <span class="marquee-item">SaaS com IA</span>
-        <span class="marquee-item">Integrações</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= EDITORIAL TICKER ================= -->
-  <section class="editorial-ticker" aria-hidden="true">
-    <div class="ticker-row" data-ticker-dir="-1">
-      <div class="ticker-inner">
-        <span>AGENTES</span><span>DE IA</span><span>AGENTES</span><span>DE IA</span><span>AGENTES</span><span>DE IA</span><span>AGENTES</span><span>DE IA</span><span>AGENTES</span><span>DE IA</span><span>AGENTES</span><span>DE IA</span><span>AGENTES</span><span>DE IA</span><span>AGENTES</span><span>DE IA</span><span>AGENTES</span><span>DE IA</span><span>AGENTES</span><span>DE IA</span>
-      </div>
-    </div>
-    <div class="ticker-row" data-ticker-dir="1">
-      <div class="ticker-inner">
-        <span>AUTOMAÇÃO</span><span>AUTOMAÇÃO</span><span>AUTOMAÇÃO</span><span>AUTOMAÇÃO</span><span>AUTOMAÇÃO</span><span>AUTOMAÇÃO</span><span>AUTOMAÇÃO</span><span>AUTOMAÇÃO</span><span>AUTOMAÇÃO</span><span>AUTOMAÇÃO</span><span>AUTOMAÇÃO</span><span>AUTOMAÇÃO</span><span>AUTOMAÇÃO</span><span>AUTOMAÇÃO</span><span>AUTOMAÇÃO</span><span>AUTOMAÇÃO</span><span>AUTOMAÇÃO</span><span>AUTOMAÇÃO</span><span>AUTOMAÇÃO</span><span>AUTOMAÇÃO</span>
-      </div>
-    </div>
-    <div class="ticker-row" data-ticker-dir="-1">
-      <div class="ticker-inner">
-        <span>SaaS</span><span>COM IA</span><span>SaaS</span><span>COM IA</span><span>SaaS</span><span>COM IA</span><span>SaaS</span><span>COM IA</span><span>SaaS</span><span>COM IA</span><span>SaaS</span><span>COM IA</span><span>SaaS</span><span>COM IA</span><span>SaaS</span><span>COM IA</span><span>SaaS</span><span>COM IA</span><span>SaaS</span><span>COM IA</span>
-      </div>
-    </div>
-    <div class="ticker-row" data-ticker-dir="1">
-      <div class="ticker-inner">
-        <span>INTEGRAÇÃO</span><span>INTEGRAÇÃO</span><span>INTEGRAÇÃO</span><span>INTEGRAÇÃO</span><span>INTEGRAÇÃO</span><span>INTEGRAÇÃO</span><span>INTEGRAÇÃO</span><span>INTEGRAÇÃO</span><span>INTEGRAÇÃO</span><span>INTEGRAÇÃO</span><span>INTEGRAÇÃO</span><span>INTEGRAÇÃO</span><span>INTEGRAÇÃO</span><span>INTEGRAÇÃO</span><span>INTEGRAÇÃO</span><span>INTEGRAÇÃO</span><span>INTEGRAÇÃO</span><span>INTEGRAÇÃO</span><span>INTEGRAÇÃO</span><span>INTEGRAÇÃO</span>
-      </div>
-    </div>
-  </section>
 
   <!-- ================= SERVICES ================= -->
   <section class="section" id="servicos">
     <div class="container">
       <div class="section-head center">
-        <span class="eyebrow" data-reveal><span class="dot"></span> O que construímos</span>
         <h2 class="h-section" data-reveal>Não aconselhamos.<br />A gente <span class="text-accent">constrói</span>.</h2>
         <p class="lead" data-reveal>Estratégia, arquitetura e implementação — do primeiro diagnóstico ao sistema rodando em produção. Sem PowerPoint que morre na gaveta.</p>
       </div>
@@ -165,7 +91,7 @@
         </article>
         <article class="card">
           <span class="num">03</span>
-          <h3>SaaS com IA</h3>
+          <h3>Plataformas com IA</h3>
           <p>Plataformas sob medida com inteligência artificial embarcada — do MVP ao produto rodando em escala.</p>
           <div class="tags"><span>Web Apps</span><span>APIs</span><span>MVP</span><span>Cloud</span></div>
         </article>
@@ -175,6 +101,18 @@
           <p>Conexão da IA com os sistemas que você já usa — CRMs, ERPs, WhatsApp e bancos de dados.</p>
           <div class="tags"><span>CRM</span><span>ERP</span><span>WhatsApp</span><span>APIs</span></div>
         </article>
+        <article class="card">
+          <span class="num">05</span>
+          <h3>Portfólios e Landing Pages</h3>
+          <p>Presença digital que converte — desde portfólios autorais até landing pages otimizadas para captar leads e gerar resultado.</p>
+          <div class="tags"><span>Design</span><span>Landing Page</span><span>Portfólio</span><span>Conversão</span></div>
+        </article>
+        <article class="card">
+          <span class="num">06</span>
+          <h3>E muito mais!</h3>
+          <p>Cada negócio tem um desafio único. Se a sua necessidade não está na lista, fale com a gente — provavelmente já resolvemos algo parecido.</p>
+          <div class="tags"><span>Sob medida</span><span>Consultoria</span><span>IA</span><span>Inovação</span></div>
+        </article>
       </div>
     </div>
   </section>
@@ -183,7 +121,6 @@
   <section class="section showcase">
     <div class="container">
       <div class="section-head center">
-        <span class="eyebrow" data-reveal><span class="dot"></span> Molior em ação</span>
         <h2 class="h-section" data-reveal>Da ideia ao impacto,<br />em uma <span class="text-accent">jornada só.</span></h2>
       </div>
       <div class="showcase-grid">
@@ -213,27 +150,22 @@
         <!-- Right-side copy (independent from the deck) -->
         <div class="showcase-steps">
           <div class="showcase-step">
-            <span class="s-kicker">Etapa 01</span>
             <h3>Entendemos o desafio</h3>
             <p>Mergulhamos no seu contexto para mapear objetivos, riscos e oportunidades. Saímos com um escopo claro e métricas de sucesso definidas.</p>
           </div>
           <div class="showcase-step">
-            <span class="s-kicker">Etapa 02</span>
             <h3>Desenhamos a solução</h3>
             <p>Definimos arquitetura, stack e experiência. Decisões técnicas que equilibram velocidade de entrega e sustentabilidade a longo prazo.</p>
           </div>
           <div class="showcase-step">
-            <span class="s-kicker">Etapa 03</span>
             <h3>Construímos com você</h3>
             <p>Desenvolvimento ágil, com entregas a cada sprint e total transparência. Qualidade desde o primeiro commit.</p>
           </div>
           <div class="showcase-step">
-            <span class="s-kicker">Etapa 04</span>
             <h3>Colocamos em produção</h3>
             <p>Deploy de verdade. O agente entra em operação 24/7 e começa a trabalhar — sem CPF, com API.</p>
           </div>
           <div class="showcase-step">
-            <span class="s-kicker">Etapa 05</span>
             <h3>Evoluímos continuamente</h3>
             <p>Acompanhamos métricas, otimizamos e evoluímos a solução. Tecnologia é processo vivo e seguimos com você no longo prazo.</p>
           </div>
@@ -256,27 +188,27 @@
         <div class="hscroll-gallery">
           <div class="hscroll-item">
             <img src="img/vendaflow.png" alt="VendaFlow — CRM de Vendas" class="hscroll-img" loading="lazy" />
-            <div class="hscroll-caption"><span class="num">01</span><h3>VendaFlow</h3><small>CRM de Vendas</small></div>
+            <div class="hscroll-caption"><span class="num">01</span><small>CRM para escritório de vendas</small></div>
           </div>
           <div class="hscroll-item">
-            <img src="img/lojamax.png" alt="LojaMax — Painel de e-commerce" class="hscroll-img" loading="lazy" />
-            <div class="hscroll-caption"><span class="num">02</span><h3>LojaMax</h3><small>Painel de e-commerce</small></div>
+            <img src="img/lojamax.png" alt="Painel para e-commerce" class="hscroll-img" loading="lazy" />
+            <div class="hscroll-caption"><span class="num">02</span><small>Painel para e-commerce</small></div>
           </div>
           <div class="hscroll-item">
-            <img src="img/smartbuy.png" alt="SmartBuy — Recomendações com IA" class="hscroll-img" loading="lazy" />
-            <div class="hscroll-caption"><span class="num">03</span><h3>SmartBuy</h3><small>Recomendações com IA</small></div>
+            <img src="img/smartbuy.png" alt="Recomendações de compra com IA" class="hscroll-img" loading="lazy" />
+            <div class="hscroll-caption"><span class="num">03</span><small>Recomendações de compra com IA</small></div>
           </div>
           <div class="hscroll-item">
-            <img src="img/ia-whatsapp.png" alt="ia-whatsapp — IA Generativa" class="hscroll-img" loading="lazy" />
-            <div class="hscroll-caption"><span class="num">04</span><h3>ia-whatsapp</h3><small>IA Generativa</small></div>
+            <img src="img/ia-whatsapp.png" alt="Chatbot - Seu secretário pessoal" class="hscroll-img" loading="lazy" />
+            <div class="hscroll-caption"><span class="num">04</span><small>Chatbot - Seu secretário pessoal</small></div>
           </div>
           <div class="hscroll-item">
-            <img src="img/clover-coldemail.png" alt="Cold Email B2B" class="hscroll-img" loading="lazy" />
-            <div class="hscroll-caption"><span class="num">05</span><h3>Cold Email B2B</h3><small>Disparo & aquecimento</small></div>
+            <img src="img/clover-coldemail.png" alt="Marketing com e-mail automatizado" class="hscroll-img" loading="lazy" />
+            <div class="hscroll-caption"><span class="num">05</span><small>Marketing com e-mail automatizado</small></div>
           </div>
           <div class="hscroll-item">
-            <img src="img/gs-portfolio.png" alt="GS Portfolio — Portfólio de desenvolvedor" class="hscroll-img" loading="lazy" />
-            <div class="hscroll-caption"><span class="num">06</span><h3>GS Portfolio</h3><small>Portfólio de desenvolvedor</small></div>
+            <img src="img/gs-portfolio.png" alt="Portfólio e Landing Pages" class="hscroll-img" loading="lazy" />
+            <div class="hscroll-caption"><span class="num">06</span><small>Portfólio e Landing Pages</small></div>
           </div>
         </div>
       </div>
@@ -289,7 +221,6 @@
       <div class="section-dark">
         <div class="dark-inner">
           <div class="section-head" style="margin-bottom:0;">
-            <span class="eyebrow" data-reveal><span class="dot"></span> Como trabalhamos</span>
             <h2 class="h-section" data-reveal style="margin-top:22px;">Um processo claro, do primeiro olá ao deploy.</h2>
           </div>
           <div class="steps">
@@ -331,7 +262,6 @@
   <section class="section section-invert" style="padding-top:0;">
     <div class="cta-wrap">
       <div class="cta-box" data-reveal>
-        <span class="eyebrow"><span class="dot"></span> Vamos construir</span>
         <h2 style="margin-top:24px;">Pronto para colocar<br />IA em <span class="text-accent">produção</span>?</h2>
         <p class="lead">Conte o seu desafio. A gente não faz demo — faz deploy. Retorno em até 24h.</p>
         <div class="hero-actions">
@@ -352,16 +282,16 @@
         <div class="footer-about">
           <a href="index.html" class="brand">
             <img class="logo-mark" src="img/molior.svg" alt="Molior" width="48" height="48" />
-            Molior
+            <span>Molior</span>
           </a>
-          <p>Agentes de IA, automações e SaaS. Construímos o que ainda não existe.</p>
+          <p>Agentes de IA e automações. Construímos o que ainda não existe.</p>
           <div class="socials">
             <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zM8.34 17v-6.4H6.2V17h2.14zM7.27 9.6a1.24 1.24 0 100-2.48 1.24 1.24 0 000 2.48zM18 17v-3.5c0-1.86-.4-3.3-2.58-3.3-1.05 0-1.75.58-2.04 1.13h-.03V10.6h-2.06V17h2.14v-3.17c0-.84.16-1.65 1.2-1.65 1.02 0 1.04.96 1.04 1.7V17H18z"/></svg></a>
             <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
           </div>
         </div>
         <div class="footer-col"><h4>Empresa</h4><a href="sobre.html">Sobre nós</a><a href="contato.html">Contato</a></div>
-        <div class="footer-col"><h4>Serviços</h4><a href="#servicos">Agentes de IA</a><a href="#servicos">Automações</a><a href="#servicos">SaaS com IA</a><a href="#servicos">Integrações</a></div>
+        <div class="footer-col"><h4>Serviços</h4><a href="#servicos">Agentes de IA</a><a href="#servicos">Automações</a><a href="#servicos">Plataformas com IA</a><a href="#servicos">Integrações</a></div>
         <div class="footer-col"><h4>Contato</h4><a href="mailto:contato@molior.ai">contato@molior.ai</a><a href="tel:+5511978144390">+55 11 97814-4390</a><a href="#">São Paulo, Brasil</a></div>
       </div>
       <div class="footer-bottom">
@@ -375,5 +305,221 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" integrity="sha384-li4UtcFCH6QeUqR4JyV58/VgTprMuz9aauj+oWtew7V4Y7ZVjnvz5px9Y3UCG0Ea" crossorigin="anonymous"></script>
   <script src="js/main.js?v=22"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+  /* ── Cube animation – Molior theme ── */
+  (function () {
+    function RoundedBoxGeometry(w, h, d, segs, r) {
+      const g = new THREE.BoxGeometry(w, h, d, segs, segs, segs);
+      const pos = g.attributes.position;
+      const idx = g.index;
+      const v = new THREE.Vector3();
+      const iw = w / 2 - r, ih = h / 2 - r, id = d / 2 - r;
+      for (let i = 0; i < pos.count; i++) {
+        v.fromBufferAttribute(pos, i);
+        const qx = Math.max(-iw, Math.min(iw, v.x));
+        const qy = Math.max(-ih, Math.min(ih, v.y));
+        const qz = Math.max(-id, Math.min(id, v.z));
+        const dx = v.x - qx, dy = v.y - qy, dz = v.z - qz;
+        const len = Math.sqrt(dx*dx + dy*dy + dz*dz) || r;
+        pos.setXYZ(i, qx + dx/len*r, qy + dy/len*r, qz + dz/len*r);
+      }
+      pos.needsUpdate = true;
+      const TOL = 1e-4, pmap = new Map(), rmp = new Int32Array(pos.count);
+      for (let i = 0; i < pos.count; i++) {
+        const k = `${Math.round(pos.getX(i)/TOL)},${Math.round(pos.getY(i)/TOL)},${Math.round(pos.getZ(i)/TOL)}`;
+        if (!pmap.has(k)) pmap.set(k, i);
+        rmp[i] = pmap.get(k);
+      }
+      for (let i = 0; i < idx.count; i++) idx.setX(i, rmp[idx.getX(i)]);
+      idx.needsUpdate = true;
+      g.computeVertexNormals();
+      return g;
+    }
+
+    function buildEnvMap() {
+      const c = document.createElement('canvas');
+      c.width = 512; c.height = 256;
+      const ctx = c.getContext('2d');
+      const sky = ctx.createLinearGradient(0, 0, 0, 256);
+      sky.addColorStop(0,    '#534AB7');
+      sky.addColorStop(0.35, '#9B92E2');
+      sky.addColorStop(0.58, '#ECEAF7');
+      sky.addColorStop(1,    '#3C3489');
+      ctx.fillStyle = sky; ctx.fillRect(0, 0, 512, 256);
+      const spot = ctx.createRadialGradient(260, 80, 0, 260, 80, 190);
+      spot.addColorStop(0,   'rgba(239,159,39,0.45)');
+      spot.addColorStop(0.5, 'rgba(239,159,39,0.08)');
+      spot.addColorStop(1,   'rgba(239,159,39,0)');
+      ctx.fillStyle = spot; ctx.fillRect(0, 0, 512, 256);
+      const t = new THREE.CanvasTexture(c);
+      t.mapping = THREE.EquirectangularReflectionMapping;
+      return t;
+    }
+
+    const wrap = document.querySelector('.hero-canvas-wrap');
+    if (!wrap) return;
+    const canvas = document.getElementById('cube-canvas');
+
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.physicallyCorrectLights = true;
+    renderer.outputEncoding = THREE.sRGBEncoding;
+
+    const W = () => wrap.clientWidth, H = () => wrap.clientHeight;
+    renderer.setSize(W(), H());
+
+    const scene = new THREE.Scene();
+    scene.environment = buildEnvMap();
+
+    const camera = new THREE.PerspectiveCamera(52, W() / H(), 0.1, 800);
+    camera.position.set(34, 22, 38);
+    camera.lookAt(0, 0, 0);
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.9));
+    const sun = new THREE.DirectionalLight(0xffffff, 2.0);
+    sun.position.set(12, 22, 12);
+    sun.castShadow = true;
+    sun.shadow.mapSize.width = sun.shadow.mapSize.height = 2048;
+    sun.shadow.camera.near = 0.5; sun.shadow.camera.far = 100;
+    sun.shadow.camera.left = sun.shadow.camera.bottom = -50;
+    sun.shadow.camera.right = sun.shadow.camera.top = 50;
+    sun.shadow.bias = -0.001;
+    scene.add(sun);
+    const fill = new THREE.DirectionalLight(0x9B92E2, 0.55);
+    fill.position.set(-10, -5, -10);
+    scene.add(fill);
+    const rim = new THREE.PointLight(0xEF9F27, 1.1, 50);
+    rim.position.set(-6, 10, -6);
+    scene.add(rim);
+
+    const ground = new THREE.Mesh(new THREE.PlaneGeometry(40, 40), new THREE.ShadowMaterial({ opacity: 0.15 }));
+    ground.rotation.x = -Math.PI / 2; ground.position.y = -18.0; ground.receiveShadow = true;
+    scene.add(ground);
+
+    const CUBE_SIZE = 4.2, BEVEL_R = 0.97, GAP = 0.36, STEP = CUBE_SIZE + GAP;
+    const GSIZE = 8, CLUSTER_R = 4.5;
+    const geo = RoundedBoxGeometry(CUBE_SIZE, CUBE_SIZE, CUBE_SIZE, 12, BEVEL_R);
+
+    function makeMat() {
+      const r = Math.random();
+
+      // — SÓLIDOS (50%) —
+      if (r < 0.25) return new THREE.MeshPhysicalMaterial({  // roxo escuro sólido
+        color: new THREE.Color(0x534AB7), roughness: 0.22, metalness: 0.05,
+        clearcoat: 0.3, clearcoatRoughness: 0.2,
+        envMapIntensity: 1.2,
+      });
+      if (r < 0.50) return new THREE.MeshPhysicalMaterial({  // roxo claro sólido
+        color: new THREE.Color(0x9B92E2), roughness: 0.18, metalness: 0.0,
+        clearcoat: 0.2, clearcoatRoughness: 0.2,
+        envMapIntensity: 1.0,
+      });
+
+      // — VIDRO (50%) —
+      if (r < 0.75) return new THREE.MeshPhysicalMaterial({  // vidro azul-roxo
+        color: new THREE.Color(0x7B72D4), roughness: 0.0, metalness: 0.0,
+        clearcoat: 1.0, clearcoatRoughness: 0.0,
+        transparent: true, opacity: 0.45, envMapIntensity: 3.0, depthWrite: false,
+      });
+      return new THREE.MeshPhysicalMaterial({                 // vidro dourado
+        color: new THREE.Color(0xEF9F27), roughness: 0.0, metalness: 0.0,
+        clearcoat: 1.0, clearcoatRoughness: 0.0,
+        transparent: true, opacity: 0.35, envMapIntensity: 3.5, depthWrite: false,
+      });
+    }
+
+    const allPositions = [];
+    for (let x = 0; x < GSIZE; x++)
+      for (let y = 0; y < GSIZE; y++)
+        for (let z = 0; z < GSIZE; z++) {
+          const cx = x-(GSIZE-1)/2, cy = y-(GSIZE-1)/2, cz = z-(GSIZE-1)/2;
+          if (Math.sqrt(cx*cx + cy*cy + cz*cz) <= CLUSTER_R)
+            allPositions.push([x, y, z]);
+        }
+
+    const group = new THREE.Group();
+    scene.add(group);
+    const offset = (GSIZE - 1) * STEP / 2;
+
+    const meshes = {}, active = new Set();
+    const posKey = (x, y, z) => `${x},${y},${z}`;
+
+    function spawnCube(x, y, z, delay = 0) {
+      const key = posKey(x, y, z);
+      if (meshes[key]) return;
+      const mesh = new THREE.Mesh(geo, makeMat());
+      mesh.castShadow = mesh.receiveShadow = true;
+      const bx = x*STEP-offset, by = y*STEP-offset, bz = z*STEP-offset;
+      mesh.position.set(bx, by, bz);
+      mesh.userData.baseY = by;
+      mesh.scale.setScalar(0.001);
+      group.add(mesh);
+      meshes[key] = { mesh, phase: 'in', targetScale: 1, delay, onDone: null };
+      active.add(key);
+    }
+
+    function despawnCube(key) {
+      const e = meshes[key];
+      if (!e || e.phase === 'out') return;
+      e.phase = 'out'; e.targetScale = 0.001;
+      active.delete(key);
+      e.onDone = () => { group.remove(e.mesh); e.mesh.material.dispose(); delete meshes[key]; };
+    }
+
+    const shuffled = [...allPositions].sort(() => Math.random() - 0.5);
+    const initCount = Math.floor(allPositions.length * 0.40);
+    for (let i = 0; i < initCount; i++) {
+      const [x, y, z] = shuffled[i];
+      spawnCube(x, y, z, Math.random() * 2.5);
+    }
+
+    const REBUILD_TICK = 0.24, BATCH = 4;
+    let nextRebuild = 2.8;
+
+    function doRebuild() {
+      const inactive = allPositions.filter(([x,y,z]) => !active.has(posKey(x,y,z)));
+      for (let b = 0; b < BATCH; b++) {
+        if (!active.size || !inactive.length) break;
+        const arr = [...active];
+        const rmKey = arr[Math.floor(Math.random() * arr.length)];
+        const addIdx = Math.floor(Math.random() * inactive.length);
+        const [ax, ay, az] = inactive.splice(addIdx, 1)[0];
+        despawnCube(rmKey);
+        setTimeout(() => spawnCube(ax, ay, az), (0.08 + Math.random()*0.14)*1000);
+      }
+    }
+
+    const clock = new THREE.Clock();
+    (function animate() {
+      requestAnimationFrame(animate);
+      const dt = clock.getDelta(), now = clock.elapsedTime;
+      group.rotation.y += 0.0015;
+      group.rotation.x = Math.sin(now * 0.10) * 0.10;
+      if (now >= nextRebuild) { doRebuild(); nextRebuild = now + REBUILD_TICK; }
+      for (const key of Object.keys(meshes)) {
+        const e = meshes[key];
+        if (e.delay > 0) { e.delay -= dt; continue; }
+        const { mesh } = e;
+        const sp = e.phase === 'in' ? 0.13 : 0.11;
+        const sc = mesh.scale.x + (e.targetScale - mesh.scale.x) * sp;
+        mesh.scale.setScalar(Math.max(sc, 0.0001));
+        mesh.position.y = mesh.userData.baseY
+          + Math.sin(now * 0.80 + mesh.userData.baseY * 2.1 + mesh.position.x * 1.4) * 0.04;
+        if (e.phase === 'out' && sc < 0.004 && e.onDone) e.onDone();
+      }
+      renderer.render(scene, camera);
+    })();
+
+    const ro = new ResizeObserver(() => {
+      renderer.setSize(W(), H());
+      camera.aspect = W() / H();
+      camera.updateProjectionMatrix();
+    });
+    ro.observe(wrap);
+  })();
+  </script>
 </body>
 </html>

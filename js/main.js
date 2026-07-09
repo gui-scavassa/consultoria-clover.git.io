@@ -125,18 +125,6 @@ function initReveals() {
   });
 }
 
-/* ---------- 5b. Hero mock scroll (scale + tilt) ---------- */
-function initHeroScroll() {
-  const mock = document.querySelector('.hero-mock');
-  if (!mock) return;
-  gsap.fromTo(mock,
-    { y: 60, scale: .94, rotateX: 9, transformPerspective: 1400, transformOrigin: 'center top' },
-    { y: 0, scale: 1, rotateX: 0, ease: 'none',
-      scrollTrigger: { trigger: mock, start: 'top 92%', end: 'top 30%', scrub: true } }
-  );
-}
-
-
 /* ---------- Image deck (auto-cycle every 2s + fan on hover) ----------
    Pure CSS/JS — no GSAP dependency, runs even if animations are off.   */
 function initDeck() {
@@ -216,48 +204,6 @@ function initDeck() {
 
   stack();
   start();
-}
-
-/* ---------- 6. Editorial Ticker — driven purely by scroll position ----------
-   Rows move only when the visitor scrolls. Odd rows go left, even go right.
-   Content loops seamlessly (modulo half-width) so it never runs out.       */
-function initTicker() {
-  const rows = document.querySelectorAll('.ticker-row');
-  if (!rows.length) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  // px of translateX per px scrolled — different per row for parallax feel
-  const speeds = [0.28, 0.40, 0.22, 0.34];
-  const dirs   = Array.from(rows).map(r => parseInt(r.dataset.tickerDir) || -1);
-  let halves   = null; // cached half-widths (recomputed after fonts load)
-
-  const compute = () => {
-    halves = Array.from(rows).map(row => {
-      const inner = row.querySelector('.ticker-inner');
-      return inner ? inner.scrollWidth / 2 : 1;
-    });
-  };
-
-  const update = () => {
-    if (!halves) compute();
-    const raw = window.scrollY;
-    rows.forEach((row, i) => {
-      const inner = row.querySelector('.ticker-inner');
-      if (!inner) return;
-      const hw  = halves[i];
-      const dist = raw * speeds[i % speeds.length];
-      // Left rows: 0 → -hw → loop; right rows: -hw → 0 → loop (both seamless)
-      const offset = dirs[i] === -1
-        ? -(dist % hw)
-        : (dist % hw) - hw;
-      inner.style.transform = `translateX(${offset}px)`;
-    });
-  };
-
-  update();
-  window.addEventListener('scroll', update, { passive: true });
-  // Recompute after fonts settle (avoids wrong scrollWidth on first paint)
-  if (document.fonts) document.fonts.ready.then(() => { halves = null; update(); });
 }
 
 /* ---------- 7. Count-up stats ---------- */
@@ -372,109 +318,6 @@ function initForm() {
   });
 }
 
-/* ---------- 11. Hero beams — diagonal light-ray animation (Molior theme) ---------- */
-function initHeroFlow() {
-  const canvas = document.getElementById('hero-flow');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  if (!ctx) return;
-
-  const hero = canvas.closest('.hero');
-  const dpr = window.devicePixelRatio || 1;
-  const mobile = () => window.innerWidth < 768;
-
-  let width = 0, height = 0, animId = 0, beams = [];
-
-  function mkBeam() {
-    const isPurple = Math.random() < 0.7;
-    return {
-      x:         Math.random() * width  * 1.5 - width  * 0.25,
-      y:         Math.random() * height * 1.5 - height * 0.25,
-      width:     30  + Math.random() * 60,
-      length:    height * 2.5,
-      angle:     -35 + Math.random() * 10,
-      speed:     0.6 + Math.random() * 1.2,
-      opacity:   0.38 + Math.random() * 0.32,
-      hue:       isPurple ? 240 + Math.random() * 25 : 38 + Math.random() * 14,
-      isPurple,
-      pulse:     Math.random() * Math.PI * 2,
-      pulseSpeed: 0.02 + Math.random() * 0.03,
-    };
-  }
-
-  function resetBeam(b, i) {
-    const col = i % 3, gap = width / 3;
-    const isPurple = Math.random() < 0.7;
-    b.y        = height + 100;
-    b.x        = col * gap + gap / 2 + (Math.random() - 0.5) * gap * 0.5;
-    b.width    = 100 + Math.random() * 100;
-    b.speed    = 0.5 + Math.random() * 0.4;
-    b.hue      = isPurple ? 240 + Math.random() * 25 : 38 + Math.random() * 14;
-    b.isPurple = isPurple;
-    b.opacity  = 0.45 + Math.random() * 0.25;
-  }
-
-  function drawBeam(b) {
-    ctx.save();
-    ctx.translate(b.x, b.y);
-    ctx.rotate(b.angle * Math.PI / 180);
-
-    const op  = b.opacity * (0.8 + Math.sin(b.pulse) * 0.2);
-    const sat = b.isPurple ? '85%' : '95%';
-    const lit = b.isPurple ? '55%' : '58%';
-    const h   = b.hue;
-
-    const g = ctx.createLinearGradient(0, 0, 0, b.length);
-    g.addColorStop(0,   `hsla(${h},${sat},${lit},0)`);
-    g.addColorStop(0.1, `hsla(${h},${sat},${lit},${op * 0.5})`);
-    g.addColorStop(0.4, `hsla(${h},${sat},${lit},${op})`);
-    g.addColorStop(0.6, `hsla(${h},${sat},${lit},${op})`);
-    g.addColorStop(0.9, `hsla(${h},${sat},${lit},${op * 0.5})`);
-    g.addColorStop(1,   `hsla(${h},${sat},${lit},0)`);
-
-    ctx.fillStyle = g;
-    ctx.fillRect(-b.width / 2, 0, b.width, b.length);
-    ctx.restore();
-  }
-
-  function resize() {
-    width  = hero ? hero.offsetWidth  : window.innerWidth;
-    height = hero ? hero.offsetHeight : window.innerHeight;
-    canvas.width  = Math.round(width  * dpr);
-    canvas.height = Math.round(height * dpr);
-    canvas.style.width  = width  + 'px';
-    canvas.style.height = height + 'px';
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const count = mobile() ? 15 : 30;
-    beams = Array.from({ length: count }, mkBeam);
-  }
-
-  function render() {
-    ctx.clearRect(0, 0, width, height);
-    ctx.filter = mobile() ? 'blur(8px)' : 'blur(22px)';
-
-    beams.forEach((b, i) => {
-      b.y     -= b.speed;
-      b.pulse += b.pulseSpeed;
-      if (b.y + b.length < -100) resetBeam(b, i);
-      drawBeam(b);
-    });
-
-    animId = requestAnimationFrame(render);
-  }
-
-  resize();
-  window.addEventListener('resize', resize, { passive: true });
-  render();
-
-  if (typeof IntersectionObserver !== 'undefined' && hero) {
-    new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { if (!animId) render(); }
-      else { cancelAnimationFrame(animId); animId = 0; }
-    }, { threshold: 0 }).observe(hero);
-  }
-}
-
 /* ---------- Boot ---------- */
 window.addEventListener('DOMContentLoaded', () => {
   // Always run — no GSAP dependency
@@ -482,15 +325,12 @@ window.addEventListener('DOMContentLoaded', () => {
   initProgress();
   initForm();
   initDeck();
-  initTicker();
-  initHeroFlow();
   initHorizontalScroll();
 
   // Animation layer — only if GSAP/ScrollTrigger loaded
   if (ANIM) {
     initSmoothScroll();
     initHero();
-    initHeroScroll();
     initReveals();
     initCounters();
     initMagnetic();
